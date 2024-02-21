@@ -1,0 +1,11 @@
+set linenumbers
+set indicator
+set breaklonglines
+set locking
+set mouse
+set tabsize 4
+set tabstospaces
+set positionlog
+set afterends
+set wordbounds
+set guidestripe 80

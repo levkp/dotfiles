@@ -1,0 +1,10 @@
+[user]
+	name = lev.kp
+	email = levente.kataipal@pm.me
+	signingkey = 1D96EB54F20C2F3D463156C073A3AAC2968BC3A2
+[commit]
+	gpgsign = true
+[init]
+	defaultBranch = master
+[core]
+	autocrlf = input
