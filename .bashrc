@@ -53,11 +53,15 @@ function destroy {
     done
 }
 
-function syncdirs {
+function sync_phone {
     laptop_dir="/home/levi/Sync"
     phone_dir="/run/user/1000/gvfs/mtp:host=Xiaomi_Redmi_Note_8T_1996ecbb/Internal shared storage/Sync"
     cp -rv "$laptop_dir/Pavilion 15" "$phone_dir"
     cp -rv "$phone_dir/Note 8T" "$laptop_dir"
+}
+
+function sync_ereader {
+    echo ""
 }
 
 function move_phone_pics {
@@ -82,4 +86,3 @@ function add_journal_entry {
     echo "Score:" $2 >> $path
     gte $path
 }
-

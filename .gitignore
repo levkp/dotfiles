@@ -3,3 +3,6 @@
 !.bashrc
 !.nanorc
 !.gitignore
+!.gnupg/
+!.gnupg/gpg.conf
+
