@@ -5,4 +5,5 @@
 !.gitignore
 !.gnupg/
 !.gnupg/gpg.conf
-
+!.ssh/
+!.ssh/config
