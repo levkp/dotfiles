@@ -7,3 +7,4 @@
 !.gnupg/gpg.conf
 !.ssh/
 !.ssh/config
+!.tmux.conf
