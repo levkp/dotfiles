@@ -8,3 +8,8 @@
 	defaultBranch = master
 [core]
 	autocrlf = input
+[alias]
+    a = add .
+    c = commit
+    p = push
+    s = status

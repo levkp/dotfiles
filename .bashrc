@@ -1,4 +1,3 @@
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
@@ -33,12 +32,6 @@ alias npm="npm --no-fund --no-audit"
 alias pls="sudo"
 alias top="top -d1 -o %CPU"
 alias xcb="xclip -selection c"
-alias gte="gnome-text-editor"
-alias ssh_probook="ssh -p 422 levi@192.168.0.212"
-
-function scp_probook {
-    scp -P 422 "$1" levi@192.168.0.212:/home/levi
-}
 
 function destroy {
     for path in "$@"; do
@@ -53,23 +46,26 @@ function destroy {
     done
 }
 
-function sync_phone {
-    laptop_dir="/home/levi/Sync"
-    phone_dir="/run/user/1000/gvfs/mtp:host=Xiaomi_Redmi_Note_8T_1996ecbb/Internal shared storage/Sync"
-    cp -rv "$laptop_dir/Pavilion 15" "$phone_dir"
-    cp -rv "$phone_dir/Note 8T" "$laptop_dir"
+function sync_redmi {
+    thinkpad_sync_dir="/home/levi/Sync"
+    thinkpad_pics_dir="/home/levi/Pictures/Redmi"
+    redmi_sync_dir="/sdcard/Sync"
+
+    adb push "$thinkpad_sync_dir/Thinkpad" "$redmi_sync_dir"
+    adb pull "$redmi_sync_dir/Redmi" "$thinkpad_sync_dir"
+
+    adb pull "/sdcard/DCIM" "$thinkpad_pics_dir"
+    adb shell rm -rf "/sdcard/DCIM/*"
+
+    adb pull "/sdcard/Pictures" "$thinkpad_pics_dir"
+    adb shell rm -rf "/sdcard/Pictures/*" 
+
+    adb pull "/sdcard/Download" "$thinkpad_pics_dir"
+    adb shell rm -rf "/sdcard/Download/*" 
 }
 
-function sync_ereader {
+function sync_pocketbook {
     echo ""
-}
-
-function move_phone_pics {
-    phone_home_dir="/run/user/1000/gvfs/mtp:host=Xiaomi_Redmi_Note_8T_1996ecbb/Internal shared storage"
-    target_dir="/home/levi/Pictures/Note 8T"
-    mv -v "$phone_home_dir/DCIM" "$target_dir"
-    mv -v "$phone_home_dir/Pictures" "$target_dir"
-    nautilus "$target_dir" &
 }
 
 function mirror_home {
@@ -84,5 +80,5 @@ function add_journal_entry {
     echo "Date:" $(date) >> $path
     echo "Location:" $1 >> $path
     echo "Score:" $2 >> $path
-    gte $path
+    nano $path
 }
