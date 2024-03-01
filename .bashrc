@@ -31,7 +31,16 @@ alias dr="docker"
 alias npm="npm --no-fund --no-audit"
 alias pls="sudo"
 alias top="top -d1 -o %CPU"
-alias xcb="xclip -selection c"
+alias code="flatpak run com.visualstudio.code"
+alias wlc="wl-copy"
+
+export PATH="$PATH:/home/levi/.jdks/corretto-19.0.2/bin"
+export PATH="$PATH:/home/levi/.local/share/JetBrains/Toolbox/scripts"
+
+function cbd {
+    wl-paste >> ~/Downloads/linkdump.txt
+    notify-send "Clipboard saved"
+}
 
 function destroy {
     for path in "$@"; do
@@ -58,10 +67,10 @@ function sync_redmi {
     adb shell rm -rf "/sdcard/DCIM/*"
 
     adb pull "/sdcard/Pictures" "$thinkpad_pics_dir"
-    adb shell rm -rf "/sdcard/Pictures/*" 
+    adb shell rm -rf "/sdcard/Pictures/*"
 
     adb pull "/sdcard/Download" "$thinkpad_pics_dir"
-    adb shell rm -rf "/sdcard/Download/*" 
+    adb shell rm -rf "/sdcard/Download/*"
 }
 
 function sync_pocketbook {
@@ -77,8 +86,15 @@ function mirror_home {
 
 function add_journal_entry {
     path="/home/levi/Documents/Notes/journal.txt"
+
+    for ((i = 1; i <= 80; i++)); do
+        echo -n "—" >> $path
+    done
+
+    echo -e "\n" >> $path
     echo "Date:" $(date) >> $path
     echo "Location:" $1 >> $path
-    echo "Score:" $2 >> $path
     nano $path
 }
+
+complete -C /usr/bin/terraform terraform
