@@ -5,6 +5,7 @@
 !.gitignore
 !.gnupg/
 !.gnupg/gpg.conf
+!.gnupg/gpg-agent.conf
 !.ssh/
 !.ssh/config
 !.tmux.conf

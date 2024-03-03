@@ -26,6 +26,7 @@ unset rc
 
 # Added by me
 alias l="ls -a"
+alias lla="ls -la"
 alias du="du -sh"
 alias dr="docker"
 alias npm="npm --no-fund --no-audit"
@@ -33,14 +34,10 @@ alias pls="sudo"
 alias top="top -d1 -o %CPU"
 alias code="flatpak run com.visualstudio.code"
 alias wlc="wl-copy"
+alias cbd="wl-paste >> ~/Downloads/linkdump.txt"
 
 export PATH="$PATH:/home/levi/.jdks/corretto-19.0.2/bin"
 export PATH="$PATH:/home/levi/.local/share/JetBrains/Toolbox/scripts"
-
-function cbd {
-    wl-paste >> ~/Downloads/linkdump.txt
-    notify-send "Clipboard saved"
-}
 
 function destroy {
     for path in "$@"; do
@@ -86,11 +83,9 @@ function mirror_home {
 
 function add_journal_entry {
     path="/home/levi/Documents/Notes/journal.txt"
-
     for ((i = 1; i <= 80; i++)); do
         echo -n "—" >> $path
     done
-
     echo -e "\n" >> $path
     echo "Date:" $(date) >> $path
     echo "Location:" $1 >> $path
