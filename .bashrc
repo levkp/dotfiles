@@ -29,25 +29,30 @@ alias l="ls -a"
 alias lla="ls -la"
 alias du="du -sh"
 alias dr="docker"
+alias ff="sudo find / -type f -name"
 alias npm="npm --no-fund --no-audit"
 alias pls="sudo"
 alias top="top -d1 -o %CPU"
 alias code="flatpak run com.visualstudio.code"
 alias wlc="wl-copy"
-alias cbd="wl-paste >> ~/Downloads/linkdump.txt"
+alias cbd="wl-paste >> /home/levi/Documents/Dump/clipboard_dump.txt"
 
 export PATH="$PATH:/home/levi/.jdks/corretto-19.0.2/bin"
 export PATH="$PATH:/home/levi/.local/share/JetBrains/Toolbox/scripts"
 
-function destroy {
+complete -C /usr/bin/terraform terraform
+
+function destroy_r {
+    set -e
     for path in "$@"; do
         if [ -f "$path" ]; then
-            shred -zv "$path" && rm -v "$path"
+            shred -uzv "$path"
         elif [ -d "$path" ]; then
-            cd "$path" || exit 1
-            destroy *
-            cd ..
-            rmdir -v "$path"
+            destroy_r "$path" && rmdir -v "$path"
+        elif [ -h "$path" ]; then
+            unlink "$path"
+        else
+            echo "No such file or directory, or can't be removed: $path"
         fi
     done
 }
@@ -70,19 +75,8 @@ function sync_redmi {
     adb shell rm -rf "/sdcard/Download/*"
 }
 
-function sync_pocketbook {
-    echo ""
-}
-
-function mirror_home {
-    target_dir="/run/media/levi/4d43afc4-008c-44fe-b207-3f85505f5e97/Sync/home"
-    rsync -av \
-         --delete \
-         --exclude=".cache" /home/levi "$target_dir"
-}
-
 function add_journal_entry {
-    path="/home/levi/Documents/Notes/journal.txt"
+    path="/home/levi/Documents/Notes/journal_2024.txt"
     for ((i = 1; i <= 80; i++)); do
         echo -n "—" >> $path
     done
@@ -91,5 +85,3 @@ function add_journal_entry {
     echo "Location:" $1 >> $path
     nano $path
 }
-
-complete -C /usr/bin/terraform terraform
