@@ -9,5 +9,6 @@
 !.ssh/
 !.ssh/config
 !.tmux.conf
+!.local/
 !.local/bin/
 !.local/bin/**

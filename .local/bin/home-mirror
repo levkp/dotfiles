@@ -1,0 +1,6 @@
+#!/bin/bash
+
+target_dir="/run/media/levi/4d43afc4-008c-44fe-b207-3f85505f5e97/Sync/home"
+rsync -av \
+      --delete \
+      --exclude=".cache" /home/levi "$target_dir"

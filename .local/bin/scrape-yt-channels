@@ -1,0 +1,35 @@
+#!/bin/bash
+
+function handle_sigint {
+    exit 1
+}
+
+trap 'handle_sigint' SIGINT
+
+if ! type yt-dlp &> /dev/null; then
+    echo "yt-dlp executable is not found"
+    exit 1
+fi
+
+channels=(
+    "LaurieWired"
+)
+
+dirs="/home/levi/Videos/YouTube/"
+
+for channel in "${channels[@]}"; do
+    mkdir -p "$dirs/$channel"
+
+    datefile="$dirs/$channel/.dateafter"
+    date=$(head -n 1 "$datefile" 2>/dev/null || echo "19900101")
+
+    echo "Downloading from $channel after $date"
+
+    yt-dlp -ciw \
+        -o "$dirs/$channel/%(title)s.%(ext)s" \
+        --write-sub \
+        --write-description \
+        --sub-lang en --dateafter $date "https://www.youtube.com/@$channel/"
+
+    [ $? -eq 0 ] && date +"%Y%m%d" > "$datefile"
+done

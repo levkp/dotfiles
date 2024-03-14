@@ -1,0 +1,22 @@
+#!/bin/python
+
+import json
+import argparse
+from datetime import datetime
+import pandas as pd
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--begin', required=True, type=str)
+parser.add_argument('--end', required=True, type=str)
+parser.add_argument('--datasets', required=True, type=str)
+
+args = parser.parse_args()
+begin_date = datetime.strptime(args.begin, '%d/%m/%Y')
+end_date = datetime.strptime(args.end, '%d/%m/%Y')
+datasets_dict = json.loads(args.datasets)
+datasets = {}
+
+for name, path in datasets_dict.items():
+    datasets[name] = pd.read_csv(path)
+    print(datasets[name].info())
+
