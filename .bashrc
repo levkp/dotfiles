@@ -36,6 +36,7 @@ alias top="top -d1 -o %CPU"
 alias code="flatpak run com.visualstudio.code"
 alias wlc="wl-copy"
 alias cbd="wl-paste >> /home/levi/Documents/Dump/clipboard_dump.txt"
+alias exiftool="/home/levi/.local/opt/Image-ExifTool-12.79/./exiftool"
 
 export PATH="$PATH:/home/levi/.jdks/corretto-19.0.2/bin"
 export PATH="$PATH:/home/levi/.local/share/JetBrains/Toolbox/scripts"
