@@ -27,7 +27,7 @@ unset rc
 # Added by me
 alias l="ls -a"
 alias lla="ls -la"
-alias du="du -sh"
+alias du="du -h"
 alias dr="docker"
 alias ff="sudo find / -type f -name"
 alias npm="npm --no-fund --no-audit"

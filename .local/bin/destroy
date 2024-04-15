@@ -1,11 +1,15 @@
-#/bin/bash
+#!/bin/bash
 
 for path in "$@"; do
     if [ -f "$path" ] || [ -d "$path" ]; then
+        if [ -h "$path" ]; then
+            link="$path"
+            path=$(readlink "$link")
+            unlink "$link"
+        fi
+
         find "$path" -type f -exec shred -uzvf {} +
-    elif [ -h "$path" ]; then
-        unlink "$path"
     else
-        echo "No such file or directory, or can't be removed: $path"
+        echo "Not regular file or directory: $path"
     fi
 done
