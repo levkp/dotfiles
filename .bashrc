@@ -38,6 +38,8 @@ alias wlc="wl-copy"
 alias cbd="wl-paste >> /home/levi/Documents/Dump/clipboard_dump.txt"
 alias exiftool="/home/levi/.local/opt/Image-ExifTool-12.79/./exiftool"
 alias tf="terraform"
+alias kctl="kubectl"
+alias cdrci="cd ~/Repositories/College/Internship"
 
 export PATH="$PATH:/home/levi/.jdks/corretto-19.0.2/bin"
 export PATH="$PATH:/home/levi/.local/share/JetBrains/Toolbox/scripts"
@@ -87,3 +89,9 @@ function add_journal_entry {
     echo "Location:" $1 >> $path
     nano $path
 }
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/levi/.local/lib/google-cloud-sdk/path.bash.inc' ]; then . '/home/levi/.local/lib/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/levi/.local/lib/google-cloud-sdk/completion.bash.inc' ]; then . '/home/levi/.local/lib/google-cloud-sdk/completion.bash.inc'; fi

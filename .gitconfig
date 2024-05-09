@@ -12,4 +12,5 @@
     a = add .
     c = commit
     p = push
+    r = remote
     s = status
