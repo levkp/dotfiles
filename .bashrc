@@ -22,10 +22,14 @@ if [ -d ~/.bashrc.d ]; then
 	done
 fi
 
+
+
 unset rc
 
 # Added by me
-alias l="ls -a"
+
+PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\W\$\[\033[00m\] '
+
 alias lla="ls -la"
 alias du="du -h"
 alias dr="docker"
@@ -33,33 +37,16 @@ alias ff="sudo find / -type f -name"
 alias npm="npm --no-fund --no-audit"
 alias pls="sudo"
 alias top="top -d1 -o %CPU"
-alias code="flatpak run com.visualstudio.code"
 alias wlc="wl-copy"
 alias cbd="wl-paste >> /home/levi/Documents/Dump/clipboard_dump.txt"
 alias exiftool="/home/levi/.local/opt/Image-ExifTool-12.79/./exiftool"
 alias tf="terraform"
-alias kctl="kubectl"
-alias cdrci="cd ~/Repositories/College/Internship"
+alias k="kubectl"
 
 export PATH="$PATH:/home/levi/.jdks/corretto-19.0.2/bin"
 export PATH="$PATH:/home/levi/.local/share/JetBrains/Toolbox/scripts"
 
 complete -C /usr/bin/terraform terraform
-
-function destroy_r {
-    set -e
-    for path in "$@"; do
-        if [ -f "$path" ]; then
-            shred -uzv "$path"
-        elif [ -d "$path" ]; then
-            destroy_r "$path" && rmdir -v "$path"
-        elif [ -h "$path" ]; then
-            unlink "$path"
-        else
-            echo "No such file or directory, or can't be removed: $path"
-        fi
-    done
-}
 
 function sync_redmi {
     thinkpad_sync_dir="/home/levi/Sync"
@@ -91,7 +78,7 @@ function add_journal_entry {
 }
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/levi/.local/lib/google-cloud-sdk/path.bash.inc' ]; then . '/home/levi/.local/lib/google-cloud-sdk/path.bash.inc'; fi
+if [ -f '/home/levi/google-cloud-sdk/path.bash.inc' ]; then . '/home/levi/google-cloud-sdk/path.bash.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/levi/.local/lib/google-cloud-sdk/completion.bash.inc' ]; then . '/home/levi/.local/lib/google-cloud-sdk/completion.bash.inc'; fi
+if [ -f '/home/levi/google-cloud-sdk/completion.bash.inc' ]; then . '/home/levi/google-cloud-sdk/completion.bash.inc'; fi
