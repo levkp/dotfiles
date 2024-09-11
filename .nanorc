@@ -8,5 +8,4 @@ set tabstospaces
 set positionlog
 set afterends
 set wordbounds
-# set guidestripe 80
 set minibar

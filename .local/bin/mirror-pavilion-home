@@ -1,0 +1,7 @@
+#!/bin/bash
+
+rsync --archive \
+      --verbose \
+      --delete \
+      --exclude=".cache" \
+      levi@192.168.0.202:/home/levi "/run/media/levi/4d43afc4-008c-44fe-b207-3f85505f5e97/Backup/Sync/pavilion/home"
