@@ -25,22 +25,19 @@ fi
 unset rc
 
 # Added by me
-
 PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\W\$\[\033[00m\] '
 
 alias lla="ls -la"
 alias du="du -h"
 alias dr="docker"
 alias ff="sudo find / -type f -name"
-alias npm="npm --no-fund --no-audit"
 alias pls="sudo"
 alias top="top -d1 -o %CPU"
-alias wlc="wl-copy"
-alias cbd="wl-paste >> /home/levi/Documents/Dump/clipboard_dump.txt"
+# alias wlc="wl-copy"
+# alias cbd="wl-paste >> /home/levi/Documents/Dump/clipboard_dump.txt"
 alias k="kubectl"
 
-export PATH="$PATH:/home/levi/.jdks/corretto-19.0.2/bin"
-export PATH="$PATH:/home/levi/.local/share/JetBrains/Toolbox/scripts"
+export EDITOR=vim
 
 function sync_redmi {
     thinkpad_sync_dir="/home/levi/Sync"
@@ -68,5 +65,5 @@ function add_journal_entry {
     echo -e "\n" >> $path
     echo "Date:" $(date) >> $path
     echo "Location:" $1 >> $path
-    nano $path
+    $EDITOR $path
 }
