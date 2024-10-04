@@ -25,37 +25,15 @@ fi
 unset rc
 
 # Added by me
+
+source ~/.config/shell/aliases.sh
+
 PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\W\$\[\033[00m\] '
 
-alias lla="ls -la"
-alias du="du -h"
-alias dr="docker"
-alias ff="sudo find / -type f -name"
-alias pls="sudo"
-alias top="top -d1 -o %CPU"
 # alias wlc="wl-copy"
 # alias cbd="wl-paste >> /home/levi/Documents/Dump/clipboard_dump.txt"
-alias k="kubectl"
 
 export EDITOR=vim
-
-function sync_redmi {
-    thinkpad_sync_dir="/home/levi/Sync"
-    thinkpad_pics_dir="/home/levi/Pictures/Redmi"
-    redmi_sync_dir="/sdcard/Sync"
-
-    adb push "$thinkpad_sync_dir/Thinkpad" "$redmi_sync_dir"
-    adb pull "$redmi_sync_dir/Redmi" "$thinkpad_sync_dir"
-
-    adb pull "/sdcard/DCIM" "$thinkpad_pics_dir"
-    adb shell rm -rf "/sdcard/DCIM/*"
-
-    adb pull "/sdcard/Pictures" "$thinkpad_pics_dir"
-    adb shell rm -rf "/sdcard/Pictures/*"
-
-    adb pull "/sdcard/Download" "$thinkpad_pics_dir"
-    adb shell rm -rf "/sdcard/Download/*"
-}
 
 function add_journal_entry {
     path="/home/levi/Documents/Notes/journal_2024.txt"

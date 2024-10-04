@@ -1,0 +1,6 @@
+alias l="ls"
+alias c="clear"
+alias k="kubectl"
+alias du="du -h"
+alias dr="docker"
+alias pls="sudo"
